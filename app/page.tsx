@@ -428,12 +428,37 @@ export default function Home() {
             Tools like Convertio and CloudConvert upload your files to their servers to process them. That means your images — personal, professional, or confidential — pass through infrastructure you don&apos;t control. Picspresso converts JPG to WebP, PNG to WebP, and more without ever touching a server. It is faster, private by design, and works on files of any size.
           </p>
         </div>
+
+        {/* Free & open source note */}
+        <div style={{ height: 1, background: "var(--border)", margin: "40px 0 32px" }} />
+        <div className="glass-sm flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5">
+          <div style={{
+            background: "rgba(74,222,128,0.1)",
+            border: "1px solid rgba(74,222,128,0.25)",
+            borderRadius: 10,
+            width: 36, height: 36,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            flexShrink: 0,
+          }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+          </div>
+          <div>
+            <p style={{ color: "var(--heading)", fontSize: 14, fontWeight: 600, marginBottom: 4 }}>Free forever. No strings attached.</p>
+            <p style={{ color: "var(--muted)", fontSize: 13, lineHeight: 1.7 }}>
+              Picspresso is completely free to use, always. The source code is open on{" "}
+              <a href="https://github.com/justinproductions/picspresso" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text)", textDecoration: "underline", textUnderlineOffset: 3 }}>GitHub</a>
+              {" "}under the MIT license — read it, fork it, build on it. If it saves you time, a coffee is always appreciated but never expected.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* Footer */}
       <footer style={{ borderTop: "1px solid var(--border)", marginTop: 16, paddingTop: 28, paddingBottom: 32 }}>
+        {/* Row 1: brand + privacy + links */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          {/* Brand */}
           <div className="flex items-center gap-3">
             <span style={{ color: "var(--heading)", fontWeight: 600, fontSize: 15 }}>
               <span style={{ color: "var(--accent)" }}>pic</span>spresso
@@ -442,7 +467,6 @@ export default function Home() {
             <span style={{ color: "var(--muted)", fontSize: 12 }}>Free browser-based WebP converter</span>
           </div>
 
-          {/* Privacy badge */}
           <div className="flex items-center gap-2" style={{ color: "var(--muted)", fontSize: 12 }}>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -450,30 +474,7 @@ export default function Home() {
             Images never leave your browser
           </div>
 
-          {/* Links */}
           <div className="flex items-center gap-4">
-            <a
-              href="https://buymeacoffee.com/justinalentecer"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 6,
-                background: "#FFDD00",
-                color: "#000",
-                fontSize: 12,
-                fontWeight: 600,
-                textDecoration: "none",
-                borderRadius: 20,
-                padding: "5px 12px",
-                transition: "opacity 0.2s ease",
-              }}
-              onMouseOver={(e) => (e.currentTarget.style.opacity = "0.85")}
-              onMouseOut={(e) => (e.currentTarget.style.opacity = "1")}
-            >
-              ☕ Buy me a coffee
-            </a>
             <a
               href="https://github.com/justinproductions/picspresso"
               target="_blank"
@@ -501,6 +502,34 @@ export default function Home() {
               justin.productions
             </a>
           </div>
+        </div>
+
+        {/* Row 2: Buy me a coffee — full width */}
+        <div style={{ marginTop: 16 }}>
+          <a
+            href="https://buymeacoffee.com/justinalentecer"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 8,
+              background: "#FFDD00",
+              color: "#000",
+              fontSize: 13,
+              fontWeight: 700,
+              textDecoration: "none",
+              borderRadius: 14,
+              padding: "11px 0",
+              width: "100%",
+              transition: "opacity 0.2s ease",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.opacity = "0.85")}
+            onMouseOut={(e) => (e.currentTarget.style.opacity = "1")}
+          >
+            ☕ Buy me a coffee
+          </a>
         </div>
 
         <p style={{ color: "var(--muted)", fontSize: 11, marginTop: 20, opacity: 0.5, textAlign: "center" }}>
