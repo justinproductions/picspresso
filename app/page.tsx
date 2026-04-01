@@ -157,6 +157,40 @@ export default function Home() {
   }
 
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          name: "Picspresso",
+          url: "https://www.picspresso.com",
+          description:
+            "Free browser-based WebP image converter. Convert JPG, PNG, GIF and more to WebP with bulk upload, resize, and quality control. Images never leave your browser.",
+          applicationCategory: "MultimediaApplication",
+          operatingSystem: "Any",
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "USD",
+          },
+          featureList: [
+            "Convert JPG to WebP",
+            "Convert PNG to WebP",
+            "Bulk image conversion",
+            "Image resize with aspect ratio lock",
+            "Quality slider 0–100",
+            "100% client-side — images never uploaded",
+          ],
+          author: {
+            "@type": "Person",
+            name: "Justin Alen Tecer",
+            url: "https://justin.productions/en",
+          },
+        }),
+      }}
+    />
     <main className="relative z-10 flex flex-col min-h-screen" style={{ maxWidth: 960, margin: "0 auto", width: "100%", paddingTop: 48, paddingBottom: 48, paddingLeft: "clamp(16px, 5vw, 48px)", paddingRight: "clamp(16px, 5vw, 48px)" }}>
       {/* Header */}
       <header style={{ marginBottom: 40, paddingBottom: 32, borderBottom: "1px solid var(--border)" }}>
@@ -545,5 +579,6 @@ export default function Home() {
         </p>
       </footer>
     </main>
+    </>
   );
 }
