@@ -402,6 +402,96 @@ export default function Home() {
           )}
         </div>
       </div>
+
+      {/* How it works — SEO content, below the fold */}
+      <section className="mt-16 mb-8" style={{ maxWidth: 860, margin: "64px auto 32px" }}>
+        <div style={{ height: 1, background: "var(--border)", marginBottom: 40 }} />
+
+        <h2 style={{ color: "var(--heading)", fontSize: 20, fontWeight: 600, marginBottom: 24 }}>
+          How Picspresso works
+        </h2>
+
+        <div className="grid gap-8" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}>
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-3">
+              <div style={{
+                background: "rgba(191,32,30,0.15)",
+                border: "1px solid rgba(191,32,30,0.3)",
+                borderRadius: 10,
+                width: 36, height: 36,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                flexShrink: 0,
+              }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" />
+                </svg>
+              </div>
+              <h3 style={{ color: "var(--heading)", fontSize: 14, fontWeight: 600 }}>Drop your images</h3>
+            </div>
+            <p style={{ color: "var(--muted)", fontSize: 13, lineHeight: 1.7 }}>
+              Drag and drop JPG, PNG, GIF, AVIF, TIFF, or BMP files directly onto the converter — or click to select them in bulk. There is no file size limit because nothing is being uploaded anywhere.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-3">
+              <div style={{
+                background: "rgba(191,32,30,0.15)",
+                border: "1px solid rgba(191,32,30,0.3)",
+                borderRadius: 10,
+                width: 36, height: 36,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                flexShrink: 0,
+              }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" />
+                  <rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" />
+                </svg>
+              </div>
+              <h3 style={{ color: "var(--heading)", fontSize: 14, fontWeight: 600 }}>Set resize & quality</h3>
+            </div>
+            <p style={{ color: "var(--muted)", fontSize: 13, lineHeight: 1.7 }}>
+              Set a target width and height — the aspect ratio locks automatically so your images never stretch. Then use the quality slider to balance file size against visual fidelity. 82 is a good starting point for web use.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-3">
+              <div style={{
+                background: "rgba(191,32,30,0.15)",
+                border: "1px solid rgba(191,32,30,0.3)",
+                borderRadius: 10,
+                width: 36, height: 36,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                flexShrink: 0,
+              }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <h3 style={{ color: "var(--heading)", fontSize: 14, fontWeight: 600 }}>Converted in your browser</h3>
+            </div>
+            <p style={{ color: "var(--muted)", fontSize: 13, lineHeight: 1.7 }}>
+              Conversion happens entirely on your device using the browser&apos;s built-in Canvas API. Your images are drawn onto an invisible canvas, encoded to WebP natively, then handed to your downloads folder — all without a single network request. Open the DevTools Network tab and watch: nothing is sent.
+            </p>
+          </div>
+        </div>
+
+        <div style={{ height: 1, background: "var(--border)", margin: "40px 0 32px" }} />
+
+        <div className="flex flex-col gap-3">
+          <h2 style={{ color: "var(--heading)", fontSize: 20, fontWeight: 600 }}>
+            Why WebP — and why not the other converters
+          </h2>
+          <p style={{ color: "var(--muted)", fontSize: 13, lineHeight: 1.8, maxWidth: 720 }}>
+            WebP images are typically 25–35% smaller than equivalent JPEGs and up to 80% smaller than PNGs at similar visual quality. For websites, that means faster load times, lower bandwidth costs, and better Core Web Vitals scores. Most modern browsers have supported WebP natively since 2020.
+          </p>
+          <p style={{ color: "var(--muted)", fontSize: 13, lineHeight: 1.8, maxWidth: 720 }}>
+            Tools like Convertio and CloudConvert upload your files to their servers to process them. That means your images — personal, professional, or confidential — pass through infrastructure you don&apos;t control. Picspresso converts JPG to WebP, PNG to WebP, and more without ever touching a server. It is faster, private by design, and works on files of any size.
+          </p>
+        </div>
+      </section>
     </main>
   );
 }
