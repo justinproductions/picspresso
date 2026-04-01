@@ -6,21 +6,28 @@ interface Props {
   onFiles: (files: File[]) => void;
   disabled?: boolean;
   fill?: boolean;
+  currentCount?: number;
 }
 
 const ACCEPTED = ["image/jpeg", "image/png", "image/gif", "image/webp", "image/avif", "image/tiff", "image/bmp"];
+const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB per file
+const MAX_FILES = 200;
 
-export default function ImageDropzone({ onFiles, disabled, fill }: Props) {
+export default function ImageDropzone({ onFiles, disabled, fill, currentCount = 0 }: Props) {
   const [dragging, setDragging] = useState(false);
   const dragCounter = useRef(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFiles = useCallback(
     (raw: FileList | File[]) => {
-      const valid = Array.from(raw).filter((f) => ACCEPTED.includes(f.type));
+      const valid = Array.from(raw)
+        .filter((f) => ACCEPTED.includes(f.type))
+        .filter((f) => f.size <= MAX_FILE_SIZE)
+        .slice(0, Math.max(0, MAX_FILES - currentCount));
+
       if (valid.length > 0) onFiles(valid);
     },
-    [onFiles]
+    [onFiles, currentCount]
   );
 
   const onDragEnter = useCallback(

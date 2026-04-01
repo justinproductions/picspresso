@@ -312,7 +312,7 @@ export default function Home() {
 
         {/* Right panel — dropzone + grid */}
         <div className="flex flex-col gap-4 min-w-0" style={{ flex: "1 1 0" }}>
-          <ImageDropzone onFiles={handleFiles} disabled={converting} fill />
+          <ImageDropzone onFiles={handleFiles} disabled={converting} fill currentCount={totalCount} />
 
           {/* Stats summary bar — visible once at least one image is done */}
           {doneCount > 0 && (

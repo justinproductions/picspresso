@@ -67,6 +67,10 @@ export async function convertToWebP(
 }
 
 export function getOutputFileName(originalName: string): string {
-  const base = originalName.replace(/\.[^/.]+$/, "");
+  const base = originalName
+    .replace(/\.[^/.]+$/, "")
+    .replace(/[/\\]/g, "_")
+    .replace(/\.\./g, "_")
+    .replace(/[<>:"|?*\x00-\x1f]/g, "_");
   return `${base}.webp`;
 }
