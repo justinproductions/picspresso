@@ -40,8 +40,6 @@ export default function ResizeControls({ width, height, locked, original, onChan
 
   return (
     <div className="flex flex-col gap-4">
-      <span style={{ color: "var(--heading)", fontSize: 13, fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", opacity: 0.6 }}>Resize</span>
-
       <div className="flex items-end gap-3">
         {/* Width */}
         <div className="flex flex-col gap-2 flex-1">

@@ -20,18 +20,30 @@ export default function QualitySlider({ value, onChange }: Props) {
         <span style={{ color: "var(--heading)", fontSize: 14, fontWeight: 500 }}>Quality</span>
         <div className="flex items-center gap-2">
           <span style={{ color: "var(--muted)", fontSize: 12 }}>{qualityLabel(value)}</span>
-          <span
-            className="glass-sm"
+          <input
+            type="number"
+            min={0}
+            max={100}
+            value={value}
+            onChange={(e) => {
+              const n = Math.min(100, Math.max(0, Number(e.target.value) || 0));
+              onChange(n);
+            }}
             style={{
-              padding: "2px 10px",
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              borderRadius: 8,
+              width: 48,
+              padding: "2px 6px",
               fontSize: 13,
               fontWeight: 600,
               color: "var(--accent)",
-              borderRadius: 8,
+              textAlign: "center",
+              outline: "none",
+              fontFamily: "inherit",
             }}
-          >
-            {value}
-          </span>
+            onFocus={(e) => e.target.select()}
+          />
         </div>
       </div>
       <input
