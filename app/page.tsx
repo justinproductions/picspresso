@@ -194,7 +194,7 @@ export default function Home() {
 
       <div className="flex flex-col lg:flex-row gap-6 items-stretch">
         {/* Left panel — controls */}
-        <aside className="glass p-6 flex flex-col gap-5" style={{ flex: "1 1 0", minWidth: 0 }}>
+        <aside className="glass flex flex-col gap-6" style={{ flex: "1 1 0", minWidth: 0, padding: "28px 28px" }}>
           <ResizeControls
             width={width}
             height={height}

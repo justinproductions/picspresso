@@ -15,11 +15,12 @@ function qualityLabel(q: number): string {
 
 export default function QualitySlider({ value, onChange }: Props) {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-5">
+      {/* Header row */}
       <div className="flex items-center justify-between">
-        <span style={{ color: "var(--heading)", fontSize: 14, fontWeight: 500 }}>Quality</span>
+        <span style={{ color: "var(--muted)", fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>Quality</span>
         <div className="flex items-center gap-2">
-          <span style={{ color: "var(--muted)", fontSize: 12 }}>{qualityLabel(value)}</span>
+          <span style={{ color: "var(--muted)", fontSize: 11 }}>{qualityLabel(value)}</span>
           <input
             type="number"
             min={0}
@@ -33,8 +34,8 @@ export default function QualitySlider({ value, onChange }: Props) {
               background: "rgba(255,255,255,0.06)",
               border: "1px solid rgba(255,255,255,0.1)",
               borderRadius: 8,
-              width: 48,
-              padding: "2px 6px",
+              width: 52,
+              padding: "4px 6px",
               fontSize: 13,
               fontWeight: 600,
               color: "var(--accent)",
@@ -46,14 +47,19 @@ export default function QualitySlider({ value, onChange }: Props) {
           />
         </div>
       </div>
+
+      {/* Slider */}
       <input
         type="range"
         min={0}
         max={100}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
+        style={{ width: "100%" }}
       />
-      <div className="flex justify-between" style={{ color: "var(--muted)", fontSize: 11 }}>
+
+      {/* Range hints */}
+      <div className="flex justify-between" style={{ color: "var(--muted)", fontSize: 11, opacity: 0.5 }}>
         <span>Smallest</span>
         <span>Best quality</span>
       </div>
