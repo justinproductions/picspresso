@@ -5,11 +5,12 @@ import { useCallback, useRef, useState } from "react";
 interface Props {
   onFiles: (files: File[]) => void;
   disabled?: boolean;
+  fill?: boolean;
 }
 
 const ACCEPTED = ["image/jpeg", "image/png", "image/gif", "image/webp", "image/avif", "image/tiff", "image/bmp"];
 
-export default function ImageDropzone({ onFiles, disabled }: Props) {
+export default function ImageDropzone({ onFiles, disabled, fill }: Props) {
   const [dragging, setDragging] = useState(false);
   const dragCounter = useRef(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -60,6 +61,7 @@ export default function ImageDropzone({ onFiles, disabled }: Props) {
         ${disabled ? "opacity-50 cursor-not-allowed" : "hover:border-[rgba(255,255,255,0.2)]"}`}
       style={{
         minHeight: 220,
+        flex: fill ? "1" : undefined,
         borderColor: dragging ? "rgba(191,32,30,0.6)" : undefined,
       }}
       onDragEnter={onDragEnter}

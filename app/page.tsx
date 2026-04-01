@@ -182,9 +182,9 @@ export default function Home() {
         </a>
       </header>
 
-      <div className="flex flex-col lg:flex-row gap-6 flex-1">
+      <div className="flex flex-col lg:flex-row gap-6 items-stretch">
         {/* Left panel — controls */}
-        <aside className="glass p-6 flex flex-col gap-6" style={{ flex: "1 1 0", minWidth: 0, minHeight: 0 }}>
+        <aside className="glass p-6 flex flex-col gap-5" style={{ flex: "1 1 0", minWidth: 0 }}>
           <ResizeControls
             width={width}
             height={height}
@@ -259,8 +259,8 @@ export default function Home() {
         </aside>
 
         {/* Right panel — dropzone + grid */}
-        <div className="flex flex-col gap-6 min-w-0" style={{ flex: "1 1 0" }}>
-          <ImageDropzone onFiles={handleFiles} disabled={converting} />
+        <div className="flex flex-col gap-4 min-w-0" style={{ flex: "1 1 0" }}>
+          <ImageDropzone onFiles={handleFiles} disabled={converting} fill />
 
           {/* Stats summary bar — visible once at least one image is done */}
           {doneCount > 0 && (
