@@ -291,6 +291,20 @@ export default function Home() {
             ))}
           </div>
 
+          {/* Privacy note */}
+          <div style={{ height: 1, background: "var(--border)" }} />
+          <div
+            className="glass-sm p-3 flex gap-2"
+            style={{ borderColor: "rgba(191,32,30,0.2)" }}
+          >
+            <svg style={{ flexShrink: 0, marginTop: 1 }} width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <p style={{ color: "var(--muted)", fontSize: 11, lineHeight: 1.6 }}>
+              Your images <span style={{ color: "var(--text)" }}>never leave your browser.</span> Conversion runs entirely on your device using the browser&apos;s built-in Canvas API — no uploads, no servers, no storage.
+            </p>
+          </div>
+
           {/* Footer */}
           <div style={{ height: 1, background: "var(--border)" }} />
           <a
