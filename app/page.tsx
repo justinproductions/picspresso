@@ -174,7 +174,7 @@ export default function Home() {
 
       <div className="flex flex-col lg:flex-row gap-6 flex-1">
         {/* Left panel — controls */}
-        <aside className="glass p-6 flex flex-col gap-6" style={{ flex: "1 1 0", minWidth: 0 }}>
+        <aside className="glass p-6 flex flex-col gap-6" style={{ flex: "1 1 0", minWidth: 0, minHeight: 0 }}>
           <ResizeControls
             width={width}
             height={height}
@@ -245,6 +245,69 @@ export default function Home() {
               </span>
             </div>
           )}
+
+          {/* Spacer pushes how-to + footer to bottom */}
+          <div style={{ flex: 1 }} />
+
+          {/* How to use */}
+          <div style={{ height: 1, background: "var(--border)" }} />
+          <div className="flex flex-col gap-2">
+            <span style={{ color: "var(--heading)", fontSize: 13, fontWeight: 600 }}>How to use</span>
+            {[
+              { n: "1", text: "Drop images or select a folder" },
+              { n: "2", text: "Set dimensions & quality" },
+              { n: "3", text: "Click Convert" },
+              { n: "4", text: "Download single or all as ZIP" },
+            ].map(({ n, text }) => (
+              <div key={n} className="flex items-start gap-2">
+                <span
+                  style={{
+                    background: "rgba(191,32,30,0.15)",
+                    border: "1px solid rgba(191,32,30,0.3)",
+                    borderRadius: 6,
+                    color: "var(--accent)",
+                    fontSize: 10,
+                    fontWeight: 700,
+                    width: 18,
+                    height: 18,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                    marginTop: 1,
+                  }}
+                >
+                  {n}
+                </span>
+                <span style={{ color: "var(--muted)", fontSize: 12, lineHeight: 1.5 }}>{text}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Footer */}
+          <div style={{ height: 1, background: "var(--border)" }} />
+          <a
+            href="https://justin.productions/en"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: "var(--muted)",
+              fontSize: 11,
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              gap: 6,
+              transition: "color 0.2s ease",
+            }}
+            className="hover:text-white"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+            justin.productions
+          </a>
         </aside>
 
         {/* Right panel — dropzone + grid */}
