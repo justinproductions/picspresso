@@ -3,7 +3,7 @@
 import { useCallback, useState } from "react";
 import ImageDropzone from "@/components/ImageDropzone";
 import ImageCard, { type ImageItem } from "@/components/ImageCard";
-import ResizeControls from "@/components/ResizeControls";
+import ResizeControls, { type ResizeMode } from "@/components/ResizeControls";
 import QualitySlider from "@/components/QualitySlider";
 import { convertToWebP, getOutputFileName } from "@/lib/converter";
 import { getImageDimensions } from "@/lib/resize";
@@ -23,6 +23,8 @@ export default function Home() {
   const [locked, setLocked] = useState(true);
   const [firstOriginal, setFirstOriginal] = useState<Dimensions | null>(null);
   const [converting, setConverting] = useState(false);
+  const [resizeMode, setResizeMode] = useState<ResizeMode>("fixed");
+  const [maxDimension, setMaxDimension] = useState(1920);
 
   const handleFiles = useCallback(
     async (files: File[]) => {
@@ -85,7 +87,9 @@ export default function Home() {
       if (!item) continue;
 
       try {
-        const result = await convertToWebP(item.file, { quality, width, height });
+        const result = await convertToWebP(item.file, resizeMode === "per-image"
+          ? { quality, maxDimension }
+          : { quality, width, height });
         const resultName = getOutputFileName(item.file.name);
         setItems((prev) =>
           prev.map((i) =>
@@ -119,7 +123,7 @@ export default function Home() {
     }
 
     setConverting(false);
-  }, [items, converting, quality, width, height]);
+  }, [items, converting, quality, width, height, resizeMode, maxDimension]);
 
   const downloadAll = useCallback(async () => {
     const done = items.filter((i) => i.status === "done" && i.resultBlob && i.resultName);
@@ -196,15 +200,19 @@ export default function Home() {
         {/* Left panel — controls */}
         <aside className="glass flex flex-col gap-6" style={{ flex: "1 1 0", minWidth: 0, padding: "28px 28px" }}>
           <ResizeControls
+            resizeMode={resizeMode}
             width={width}
             height={height}
             locked={locked}
             original={firstOriginal}
+            maxDimension={maxDimension}
             onChange={({ width: w, height: h }) => {
               setWidth(w);
               setHeight(h);
             }}
             onLockToggle={() => setLocked((l) => !l)}
+            onResizeModeChange={setResizeMode}
+            onMaxDimensionChange={setMaxDimension}
           />
 
           <div style={{ height: 1, background: "var(--border)" }} />

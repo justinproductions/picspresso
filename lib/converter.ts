@@ -2,6 +2,7 @@ export interface ConvertOptions {
   quality: number; // 0–100
   width?: number;
   height?: number;
+  maxDimension?: number; // per-image mode: cap longest side, preserve each image's own aspect ratio
 }
 
 export interface ConvertResult {
@@ -16,14 +17,23 @@ export async function convertToWebP(
   file: File,
   options: ConvertOptions
 ): Promise<ConvertResult> {
-  const { quality, width, height } = options;
+  const { quality, width, height, maxDimension } = options;
 
   const bitmap = await createImageBitmap(file);
   const srcW = bitmap.width;
   const srcH = bitmap.height;
 
-  const targetW = width ?? srcW;
-  const targetH = height ?? srcH;
+  let targetW: number;
+  let targetH: number;
+
+  if (maxDimension) {
+    const scale = Math.min(maxDimension / srcW, maxDimension / srcH, 1);
+    targetW = Math.round(srcW * scale);
+    targetH = Math.round(srcH * scale);
+  } else {
+    targetW = width ?? srcW;
+    targetH = height ?? srcH;
+  }
 
   const canvas = document.createElement("canvas");
   canvas.width = targetW;
