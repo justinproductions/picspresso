@@ -397,7 +397,7 @@ export default function Home() {
               <h3 style={{ color: "var(--heading)", fontSize: 14, fontWeight: 600 }}>Set resize & quality</h3>
             </div>
             <p style={{ color: "var(--muted)", fontSize: 13, lineHeight: 1.7 }}>
-              Set a target width and height — the aspect ratio locks automatically so your images never stretch. Then use the quality slider to balance file size against visual fidelity. 82 is a good starting point for web use.
+              Choose between two resize modes. <strong style={{ color: "var(--text)" }}>Fixed size</strong> applies one exact width and height to every image. <strong style={{ color: "var(--text)" }}>Per image</strong> lets each image keep its own aspect ratio — you set a maximum dimension and Picspresso scales each file down to fit, so a portrait stays portrait and a landscape stays landscape. Then use the quality slider to balance file size against visual fidelity. 82 is a good starting point for web use.
             </p>
           </div>
 

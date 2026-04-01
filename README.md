@@ -40,7 +40,7 @@ Picspresso has none of these problems. There's no upload step, so there's no upl
 ## Features
 
 - **Drag & drop or bulk select** — drop individual images or select hundreds at once
-- **Resize with aspect ratio lock** — set a target width and height locks automatically, or unlock for free crop
+- **Two resize modes** — Fixed size applies one exact width and height to every image; Per image mode preserves each file's own aspect ratio and scales it down to a max dimension you set — so portraits stay portrait and landscapes stay landscape regardless of how mixed your batch is
 - **Quality slider 0–100** — fine-tune the balance between file size and visual quality
 - **Live size savings** — see exactly how much smaller each converted file is
 - **Conversion stats** — total images, before/after size, and overall savings percentage
