@@ -453,6 +453,28 @@ export default function Home() {
           {/* Links */}
           <div className="flex items-center gap-4">
             <a
+              href="https://buymeacoffee.com/justinalentecer"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                background: "#FFDD00",
+                color: "#000",
+                fontSize: 12,
+                fontWeight: 600,
+                textDecoration: "none",
+                borderRadius: 20,
+                padding: "5px 12px",
+                transition: "opacity 0.2s ease",
+              }}
+              onMouseOver={(e) => (e.currentTarget.style.opacity = "0.85")}
+              onMouseOut={(e) => (e.currentTarget.style.opacity = "1")}
+            >
+              ☕ Buy me a coffee
+            </a>
+            <a
               href="https://github.com/justinproductions/picspresso"
               target="_blank"
               rel="noopener noreferrer"
