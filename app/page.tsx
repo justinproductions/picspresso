@@ -409,7 +409,7 @@ export default function Home() {
               <h3 style={{ color: "var(--heading)", fontSize: 14, fontWeight: 600 }}>Drop your images</h3>
             </div>
             <p style={{ color: "var(--muted)", fontSize: 13, lineHeight: 1.7 }}>
-              Drag and drop JPG, PNG, GIF, AVIF, TIFF, or BMP files directly onto the converter — or click to select them in bulk. There is no file size limit because nothing is being uploaded anywhere.
+              Drag and drop JPG, PNG, GIF, AVIF, TIFF, or BMP files directly onto the converter, or click to select them in bulk. There is no server involved, so nothing is being uploaded anywhere.
             </p>
           </div>
 
@@ -431,7 +431,7 @@ export default function Home() {
               <h3 style={{ color: "var(--heading)", fontSize: 14, fontWeight: 600 }}>Set resize & quality</h3>
             </div>
             <p style={{ color: "var(--muted)", fontSize: 13, lineHeight: 1.7 }}>
-              Choose between two resize modes. <strong style={{ color: "var(--text)" }}>Fixed size</strong> applies one exact width and height to every image. <strong style={{ color: "var(--text)" }}>Per image</strong> lets each image keep its own aspect ratio — you set a maximum dimension and Picspresso scales each file down to fit, so a portrait stays portrait and a landscape stays landscape. Then use the quality slider to balance file size against visual fidelity. 82 is a good starting point for web use.
+              Choose between two resize modes. <strong style={{ color: "var(--text)" }}>Fixed size</strong> applies one exact width and height to every image. <strong style={{ color: "var(--text)" }}>Per image</strong> lets each image keep its own aspect ratio. You set a maximum dimension and Picspresso scales each file down to fit, so a portrait stays portrait and a landscape stays landscape. Then use the quality slider to balance file size against visual fidelity. 82 is a good starting point for web use.
             </p>
           </div>
 
@@ -452,7 +452,7 @@ export default function Home() {
               <h3 style={{ color: "var(--heading)", fontSize: 14, fontWeight: 600 }}>Converted in your browser</h3>
             </div>
             <p style={{ color: "var(--muted)", fontSize: 13, lineHeight: 1.7 }}>
-              Conversion happens entirely on your device using the browser&apos;s built-in Canvas API. Your images are drawn onto an invisible canvas, encoded to WebP natively, then handed to your downloads folder — all without a single network request. Open the DevTools Network tab and watch: nothing is sent.
+              Conversion happens entirely on your device using the browser&apos;s built-in Canvas API. Your images are drawn onto an invisible canvas, encoded to WebP natively, then handed straight to your downloads folder. Not a single network request is made. Open the DevTools Network tab and watch: nothing is sent.
             </p>
           </div>
         </div>
@@ -461,13 +461,13 @@ export default function Home() {
 
         <div className="flex flex-col gap-3">
           <h2 style={{ color: "var(--heading)", fontSize: 20, fontWeight: 600 }}>
-            Why WebP — and why not the other converters
+            Why WebP, and why not the other converters
           </h2>
           <p style={{ color: "var(--muted)", fontSize: 13, lineHeight: 1.8, maxWidth: 720 }}>
             WebP images are typically 25–35% smaller than equivalent JPEGs and up to 80% smaller than PNGs at similar visual quality. For websites, that means faster load times, lower bandwidth costs, and better Core Web Vitals scores. Most modern browsers have supported WebP natively since 2020.
           </p>
           <p style={{ color: "var(--muted)", fontSize: 13, lineHeight: 1.8, maxWidth: 720 }}>
-            Tools like Convertio and CloudConvert upload your files to their servers to process them. That means your images — personal, professional, or confidential — pass through infrastructure you don&apos;t control. Picspresso converts JPG to WebP, PNG to WebP, and more without ever touching a server. It is faster, private by design, and works on files of any size.
+            Tools like Convertio and CloudConvert upload your files to their servers to process them. That means your images, whether personal, professional, or confidential, pass through infrastructure you don&apos;t control. Picspresso converts JPG to WebP, PNG to WebP, and more without ever touching a server. It is faster, private by design, and works on files of any size.
           </p>
         </div>
 
@@ -491,7 +491,7 @@ export default function Home() {
             <p style={{ color: "var(--muted)", fontSize: 13, lineHeight: 1.7 }}>
               Picspresso is completely free to use, always. The source code is open on{" "}
               <a href="https://github.com/justinproductions/picspresso" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text)", textDecoration: "underline", textUnderlineOffset: 3 }}>GitHub</a>
-              {" "}under the MIT license — read it, fork it, build on it. If it saves you time, a coffee is always appreciated but never expected.
+              {" "}under the MIT license. Read it, fork it, build on it. If it saves you time, a coffee is always appreciated but never expected.
             </p>
           </div>
         </div>

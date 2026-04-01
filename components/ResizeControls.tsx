@@ -177,7 +177,7 @@ export default function ResizeControls({
           </div>
 
           <p style={{ color: "var(--muted)", fontSize: 11, opacity: 0.6, lineHeight: 1.6 }}>
-            Longest side capped at this value. Each image keeps its own aspect ratio — portraits stay portrait, landscapes stay landscape.
+            Longest side capped at this value. Each image keeps its own aspect ratio, so portraits stay portrait and landscapes stay landscape.
           </p>
         </>
       )}
