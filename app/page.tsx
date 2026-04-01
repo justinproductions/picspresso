@@ -246,9 +246,6 @@ export default function Home() {
             </div>
           )}
 
-          {/* Spacer pushes how-to + footer to bottom */}
-          <div style={{ flex: 1 }} />
-
           {/* How to use */}
           <div style={{ height: 1, background: "var(--border)" }} />
           <div className="flex flex-col gap-2">
