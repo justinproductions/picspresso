@@ -142,6 +142,16 @@ export default function Home() {
   const doneCount = items.filter((i) => i.status === "done").length;
   const totalCount = items.length;
 
+  const totalOriginalBytes = items.reduce((sum, i) => sum + (i.originalSize ?? 0), 0);
+  const totalConvertedBytes = items.reduce((sum, i) => sum + (i.convertedSize ?? 0), 0);
+  const savedBytes = totalOriginalBytes - totalConvertedBytes;
+  const savedPct = totalOriginalBytes > 0 ? (savedBytes / totalOriginalBytes) * 100 : 0;
+
+  function fmtMB(bytes: number): string {
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  }
+
   return (
     <main className="relative z-10 flex flex-col min-h-screen px-6 py-8" style={{ maxWidth: 1200, margin: "0 auto", width: "100%" }}>
       {/* Header */}
@@ -310,6 +320,56 @@ export default function Home() {
         {/* Right panel — dropzone + grid */}
         <div className="flex flex-col gap-6 min-w-0" style={{ flex: "1 1 0" }}>
           <ImageDropzone onFiles={handleFiles} disabled={converting} />
+
+          {/* Stats summary bar — visible once at least one image is done */}
+          {doneCount > 0 && (
+            <div className="glass-sm px-5 py-4 flex flex-wrap items-center gap-x-6 gap-y-2">
+              {/* Images converted */}
+              <div className="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+                <span style={{ color: "var(--muted)", fontSize: 12 }}>
+                  <span style={{ color: "var(--heading)", fontWeight: 600 }}>{doneCount}</span>
+                  {" "}image{doneCount !== 1 ? "s" : ""} converted
+                </span>
+              </div>
+
+              <div style={{ width: 1, height: 16, background: "var(--border)", flexShrink: 0 }} />
+
+              {/* Size before → after */}
+              <div className="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
+                <span style={{ color: "var(--muted)", fontSize: 12 }}>
+                  <span style={{ color: "var(--text)" }}>{fmtMB(totalOriginalBytes)}</span>
+                  <span style={{ margin: "0 4px" }}>→</span>
+                  <span style={{ color: "var(--heading)", fontWeight: 600 }}>{fmtMB(totalConvertedBytes)}</span>
+                </span>
+              </div>
+
+              <div style={{ width: 1, height: 16, background: "var(--border)", flexShrink: 0 }} />
+
+              {/* Savings */}
+              <div className="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={savedBytes >= 0 ? "#4ade80" : "#f87171"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points={savedBytes >= 0 ? "23 6 13.5 15.5 8.5 10.5 1 18" : "1 6 10.5 15.5 15.5 10.5 23 18"} />
+                  <polyline points={savedBytes >= 0 ? "17 6 23 6 23 12" : "17 18 23 18 23 12"} />
+                </svg>
+                <span style={{ fontSize: 12 }}>
+                  <span style={{ color: savedBytes >= 0 ? "#4ade80" : "#f87171", fontWeight: 700 }}>
+                    {savedBytes >= 0 ? "-" : "+"}{Math.abs(savedPct).toFixed(1)}%
+                  </span>
+                  <span style={{ color: "var(--muted)", marginLeft: 4 }}>
+                    ({savedBytes >= 0 ? "saved" : "grew"} {fmtMB(Math.abs(savedBytes))})
+                  </span>
+                </span>
+              </div>
+            </div>
+          )}
 
           {items.length > 0 && (
             <div
