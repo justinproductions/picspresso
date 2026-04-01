@@ -40,38 +40,14 @@ export default function ResizeControls({ width, height, locked, original, onChan
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-center justify-between">
-        <span style={{ color: "var(--heading)", fontSize: 14, fontWeight: 500 }}>Resize</span>
-        <button
-          className={`btn-ghost text-xs ${locked ? "active" : ""}`}
-          onClick={onLockToggle}
-          title={locked ? "Unlock aspect ratio" : "Lock aspect ratio"}
-        >
-          {locked ? (
-            <>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-              </svg>
-              Locked
-            </>
-          ) : (
-            <>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                <path d="M7 11V7a5 5 0 0 1 9.9-1" />
-              </svg>
-              Free
-            </>
-          )}
-        </button>
-      </div>
+      <span style={{ color: "var(--heading)", fontSize: 14, fontWeight: 500 }}>Resize</span>
 
       <div className="flex items-center gap-2">
-        <div className="flex flex-col gap-1 items-center">
+        <div className="flex flex-col gap-1 items-center flex-1">
           <label style={{ color: "var(--muted)", fontSize: 11 }}>W</label>
           <input
             className="dim-input"
+            style={{ width: "100%" }}
             type="number"
             min={1}
             max={16384}
@@ -80,18 +56,36 @@ export default function ResizeControls({ width, height, locked, original, onChan
           />
         </div>
 
-        {/* Chain icon */}
-        <div className="flex flex-col items-center justify-center mt-4">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={locked ? "var(--accent)" : "var(--border)"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        {/* Clickable chain icon */}
+        <button
+          onClick={onLockToggle}
+          title={locked ? "Unlock aspect ratio" : "Lock aspect ratio"}
+          style={{
+            marginTop: 18,
+            background: locked ? "rgba(191,32,30,0.15)" : "rgba(255,255,255,0.05)",
+            border: `1px solid ${locked ? "rgba(191,32,30,0.4)" : "rgba(255,255,255,0.1)"}`,
+            borderRadius: 8,
+            width: 30,
+            height: 30,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            flexShrink: 0,
+            transition: "all 0.2s ease",
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={locked ? "var(--accent)" : "var(--muted)"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
             <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
           </svg>
-        </div>
+        </button>
 
-        <div className="flex flex-col gap-1 items-center">
+        <div className="flex flex-col gap-1 items-center flex-1">
           <label style={{ color: "var(--muted)", fontSize: 11 }}>H</label>
           <input
             className="dim-input"
+            style={{ width: "100%" }}
             type="number"
             min={1}
             max={16384}

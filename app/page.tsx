@@ -143,7 +143,7 @@ export default function Home() {
   const totalCount = items.length;
 
   return (
-    <main className="relative z-10 flex flex-col min-h-screen px-4 py-8" style={{ maxWidth: 1100, margin: "0 auto", width: "100%" }}>
+    <main className="relative z-10 flex flex-col min-h-screen px-6 py-8" style={{ maxWidth: 1200, margin: "0 auto", width: "100%" }}>
       {/* Header */}
       <header className="flex items-center justify-between mb-10">
         <div>
@@ -174,7 +174,7 @@ export default function Home() {
 
       <div className="flex flex-col lg:flex-row gap-6 flex-1">
         {/* Left panel — controls */}
-        <aside className="glass p-6 flex flex-col gap-6" style={{ width: "100%", maxWidth: 280, flexShrink: 0, alignSelf: "flex-start" }}>
+        <aside className="glass p-6 flex flex-col gap-6" style={{ flex: "1 1 0", minWidth: 0 }}>
           <ResizeControls
             width={width}
             height={height}
@@ -248,7 +248,7 @@ export default function Home() {
         </aside>
 
         {/* Right panel — dropzone + grid */}
-        <div className="flex flex-col gap-6 flex-1 min-w-0">
+        <div className="flex flex-col gap-6 min-w-0" style={{ flex: "1 1 0" }}>
           <ImageDropzone onFiles={handleFiles} disabled={converting} />
 
           {items.length > 0 && (
