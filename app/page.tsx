@@ -153,9 +153,9 @@ export default function Home() {
   }
 
   return (
-    <main className="relative z-10 flex flex-col min-h-screen px-6 py-8" style={{ maxWidth: 960, margin: "0 auto", width: "100%" }}>
+    <main className="relative z-10 flex flex-col min-h-screen px-6" style={{ maxWidth: 960, margin: "0 auto", width: "100%", paddingTop: 48, paddingBottom: 48 }}>
       {/* Header */}
-      <header className="mb-10 pb-8" style={{ borderBottom: "1px solid var(--border)" }}>
+      <header style={{ marginBottom: 40, paddingBottom: 32, borderBottom: "1px solid var(--border)" }}>
         <h1 style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.5px", lineHeight: 1 }}>
           <span style={{ color: "var(--accent)" }}>pic</span><span style={{ color: "var(--heading)" }}>spresso</span>
         </h1>
