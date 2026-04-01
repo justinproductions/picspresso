@@ -155,31 +155,41 @@ export default function Home() {
   return (
     <main className="relative z-10 flex flex-col min-h-screen px-6 py-8" style={{ maxWidth: 960, margin: "0 auto", width: "100%" }}>
       {/* Header */}
-      <header className="flex items-center justify-between mb-10">
-        <div>
-          <h1
-            style={{
-              color: "var(--heading)",
-              fontSize: 28,
-              fontWeight: 600,
-              letterSpacing: "-0.5px",
-            }}
-          >
-            <span style={{ color: "var(--accent)" }}>pic</span>spresso
-          </h1>
-          <p style={{ color: "var(--muted)", fontSize: 13, marginTop: 2 }}>
-            Fast browser-based WebP converter
-          </p>
+      <header className="mb-8 pb-6" style={{ borderBottom: "1px solid var(--border)" }}>
+        <h1 style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.5px", lineHeight: 1 }}>
+          <span style={{ color: "var(--accent)" }}>pic</span><span style={{ color: "var(--heading)" }}>spresso</span>
+        </h1>
+        <p style={{ color: "var(--muted)", fontSize: 13, marginTop: 6 }}>
+          Fast browser-based WebP converter
+        </p>
+        {/* Badges */}
+        <div className="flex items-center gap-2 mt-4 flex-wrap">
+          {[
+            { icon: "M13 10V3L4 14h7v7l9-11h-7z", label: "Fast" },
+            { icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z", label: "Secure" },
+            { icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z M9 12l2 2 4-4", label: "Private" },
+            { icon: "M18 20V10M12 20V4M6 20v-6", label: "No uploads" },
+          ].map(({ icon, label }) => (
+            <span
+              key={label}
+              className="flex items-center gap-1"
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                borderRadius: 20,
+                padding: "4px 10px",
+                fontSize: 11,
+                color: "var(--muted)",
+                fontWeight: 500,
+              }}
+            >
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d={icon} />
+              </svg>
+              {label}
+            </span>
+          ))}
         </div>
-        <a
-          href="https://justin.productions/en"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: "var(--muted)", fontSize: 12, textDecoration: "none" }}
-          className="hover:text-white transition-colors"
-        >
-          by justin.productions
-        </a>
       </header>
 
       <div className="flex flex-col lg:flex-row gap-6 items-stretch">
