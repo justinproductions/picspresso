@@ -99,6 +99,9 @@ export default function ImageDropzone({ onFiles, disabled, fill, currentCount = 
         <p className="mt-1" style={{ color: "var(--muted)", fontSize: 13 }}>
           JPG, PNG, GIF, AVIF, TIFF, BMP, WebP
         </p>
+        <p className="mt-2" style={{ color: "var(--muted)", fontSize: 11, opacity: 0.55 }}>
+          Up to 200 files · 100 MB per file — everything runs in your browser, no server involved
+        </p>
       </div>
 
       <div onClick={(e) => e.stopPropagation()}>
