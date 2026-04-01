@@ -11,8 +11,8 @@ const ACCEPTED = ["image/jpeg", "image/png", "image/gif", "image/webp", "image/a
 
 export default function ImageDropzone({ onFiles, disabled }: Props) {
   const [dragging, setDragging] = useState(false);
+  const dragCounter = useRef(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const folderInputRef = useRef<HTMLInputElement>(null);
 
   const handleFiles = useCallback(
     (raw: FileList | File[]) => {
@@ -22,9 +22,30 @@ export default function ImageDropzone({ onFiles, disabled }: Props) {
     [onFiles]
   );
 
+  const onDragEnter = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      if (disabled) return;
+      dragCounter.current += 1;
+      if (dragCounter.current === 1) setDragging(true);
+    },
+    [disabled]
+  );
+
+  const onDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    dragCounter.current -= 1;
+    if (dragCounter.current === 0) setDragging(false);
+  }, []);
+
+  const onDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+  }, []);
+
   const onDrop = useCallback(
     (e: React.DragEvent) => {
       e.preventDefault();
+      dragCounter.current = 0;
       setDragging(false);
       if (disabled) return;
       handleFiles(e.dataTransfer.files);
@@ -32,28 +53,28 @@ export default function ImageDropzone({ onFiles, disabled }: Props) {
     [disabled, handleFiles]
   );
 
-  const onDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    if (!disabled) setDragging(true);
-  };
-
-  const onDragLeave = () => setDragging(false);
-
   return (
     <div
       className={`glass flex flex-col items-center justify-center gap-4 p-10 cursor-pointer transition-all duration-300 select-none
-        ${dragging ? "border-[rgba(191,32,30,0.6)] shadow-[0_0_30px_rgba(191,32,30,0.2)]" : ""}
+        ${dragging ? "shadow-[0_0_30px_rgba(191,32,30,0.2)]" : ""}
         ${disabled ? "opacity-50 cursor-not-allowed" : "hover:border-[rgba(255,255,255,0.2)]"}`}
-      style={{ minHeight: 220 }}
-      onDrop={onDrop}
-      onDragOver={onDragOver}
+      style={{
+        minHeight: 220,
+        borderColor: dragging ? "rgba(191,32,30,0.6)" : undefined,
+      }}
+      onDragEnter={onDragEnter}
       onDragLeave={onDragLeave}
+      onDragOver={onDragOver}
+      onDrop={onDrop}
       onClick={() => !disabled && fileInputRef.current?.click()}
     >
       {/* Icon */}
       <div
-        className="flex items-center justify-center w-16 h-16 rounded-full"
-        style={{ background: "rgba(191,32,30,0.15)", border: "1px solid rgba(191,32,30,0.3)" }}
+        className="flex items-center justify-center w-16 h-16 rounded-full transition-all duration-200"
+        style={{
+          background: dragging ? "rgba(191,32,30,0.25)" : "rgba(191,32,30,0.15)",
+          border: `1px solid ${dragging ? "rgba(191,32,30,0.6)" : "rgba(191,32,30,0.3)"}`,
+        }}
       >
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(191,32,30,0.9)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -64,14 +85,14 @@ export default function ImageDropzone({ onFiles, disabled }: Props) {
 
       <div className="text-center">
         <p className="font-semibold" style={{ color: "var(--heading)", fontSize: 16 }}>
-          Drop images here
+          {dragging ? "Release to upload" : "Drop images here"}
         </p>
         <p className="mt-1" style={{ color: "var(--muted)", fontSize: 13 }}>
           JPG, PNG, GIF, AVIF, TIFF, BMP, WebP
         </p>
       </div>
 
-      <div className="flex gap-3" onClick={(e) => e.stopPropagation()}>
+      <div onClick={(e) => e.stopPropagation()}>
         <button
           className="btn-ghost"
           disabled={disabled}
@@ -83,35 +104,14 @@ export default function ImageDropzone({ onFiles, disabled }: Props) {
           </svg>
           Select files
         </button>
-        <button
-          className="btn-ghost"
-          disabled={disabled}
-          onClick={() => folderInputRef.current?.click()}
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
-          </svg>
-          Select folder
-        </button>
       </div>
 
-      {/* Hidden inputs */}
       <input
         ref={fileInputRef}
         type="file"
         accept={ACCEPTED.join(",")}
         multiple
         className="hidden"
-        onChange={(e) => e.target.files && handleFiles(e.target.files)}
-      />
-      <input
-        ref={folderInputRef}
-        type="file"
-        accept={ACCEPTED.join(",")}
-        multiple
-        className="hidden"
-        // @ts-expect-error webkitdirectory is non-standard
-        webkitdirectory=""
         onChange={(e) => e.target.files && handleFiles(e.target.files)}
       />
     </div>
