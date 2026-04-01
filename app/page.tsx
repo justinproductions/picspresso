@@ -153,7 +153,7 @@ export default function Home() {
   }
 
   return (
-    <main className="relative z-10 flex flex-col min-h-screen px-6" style={{ maxWidth: 960, margin: "0 auto", width: "100%", paddingTop: 48, paddingBottom: 48 }}>
+    <main className="relative z-10 flex flex-col min-h-screen" style={{ maxWidth: 960, margin: "0 auto", width: "100%", paddingTop: 48, paddingBottom: 48, paddingLeft: "clamp(16px, 5vw, 48px)", paddingRight: "clamp(16px, 5vw, 48px)" }}>
       {/* Header */}
       <header style={{ marginBottom: 40, paddingBottom: 32, borderBottom: "1px solid var(--border)" }}>
         <h1 style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.5px", lineHeight: 1 }}>
