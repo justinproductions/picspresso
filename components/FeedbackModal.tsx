@@ -12,11 +12,14 @@ type Status = "idle" | "submitting" | "success" | "error";
 export default function FeedbackModal({ onClose }: Props) {
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<Status>("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (message.trim().length < 3) return;
+    // Silently succeed if honeypot is filled — bot submission
+    if (honeypot) { setStatus("success"); return; }
     setStatus("submitting");
 
     try {
@@ -81,6 +84,16 @@ export default function FeedbackModal({ onClose }: Props) {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            {/* Honeypot — hidden from real users, bots fill it in */}
+            <input
+              type="text"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
+            />
             <div className="flex flex-col gap-2">
               <label style={{ color: "var(--muted)", fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
                 Message <span style={{ color: "var(--accent)" }}>*</span>
