@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import FeedbackModal from "@/components/FeedbackModal";
 import ImageDropzone from "@/components/ImageDropzone";
 import ImageCard, { type ImageItem } from "@/components/ImageCard";
 import ResizeControls, { type ResizeMode } from "@/components/ResizeControls";
@@ -23,6 +24,7 @@ export default function Home() {
   const [locked, setLocked] = useState(true);
   const [firstOriginal, setFirstOriginal] = useState<Dimensions | null>(null);
   const [converting, setConverting] = useState(false);
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
   const [resizeMode, setResizeMode] = useState<ResizeMode>("fixed");
   const [maxDimension, setMaxDimension] = useState(1920);
 
@@ -579,6 +581,46 @@ export default function Home() {
         </p>
       </footer>
     </main>
+
+      {/* Floating feedback button */}
+      <button
+        onClick={() => setFeedbackOpen(true)}
+        style={{
+          position: "fixed",
+          bottom: 28,
+          right: 28,
+          zIndex: 40,
+          background: "rgba(20,20,30,0.85)",
+          border: "1px solid rgba(255,255,255,0.1)",
+          borderRadius: 20,
+          padding: "10px 18px",
+          color: "var(--muted)",
+          fontSize: 12,
+          fontWeight: 600,
+          fontFamily: "inherit",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          gap: 7,
+          backdropFilter: "blur(10px)",
+          transition: "all 0.2s ease",
+        }}
+        onMouseOver={(e) => {
+          e.currentTarget.style.borderColor = "rgba(191,32,30,0.4)";
+          e.currentTarget.style.color = "var(--text)";
+        }}
+        onMouseOut={(e) => {
+          e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
+          e.currentTarget.style.color = "var(--muted)";
+        }}
+      >
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+        Ideas?
+      </button>
+
+      {feedbackOpen && <FeedbackModal onClose={() => setFeedbackOpen(false)} />}
     </>
   );
 }
