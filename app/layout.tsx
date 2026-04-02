@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -67,6 +68,7 @@ export default function RootLayout({
         <div className="glow-blob glow-blob-pink" />
         <div className="glow-blob glow-blob-blue" />
         {children}
+        <Analytics />
       </body>
     </html>
   );
