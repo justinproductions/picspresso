@@ -196,14 +196,16 @@ export default function Home() {
     <main className="relative z-10 flex flex-col min-h-screen" style={{ maxWidth: 960, margin: "0 auto", width: "100%", paddingTop: 48, paddingBottom: 48, paddingLeft: "clamp(16px, 5vw, 48px)", paddingRight: "clamp(16px, 5vw, 48px)" }}>
       {/* Header */}
       <header style={{ marginBottom: 40, paddingBottom: 32, borderBottom: "1px solid var(--border)" }}>
-        <img
-          src="/logo.webp"
-          alt="Picspresso"
-          style={{ height: 40, width: "auto", display: "block" }}
-        />
-        <p style={{ color: "var(--muted)", fontSize: 13, marginTop: 6 }}>
-          Fast browser-based WebP converter
-        </p>
+        <div className="flex items-center gap-4">
+          <img
+            src="/logo.webp"
+            alt="Picspresso"
+            style={{ height: 40, width: "auto", display: "block" }}
+          />
+          <p style={{ color: "var(--muted)", fontSize: 13 }}>
+            Fast browser-based WebP converter
+          </p>
+        </div>
         {/* Badges */}
         <div className="flex items-center gap-2 mt-4 flex-wrap">
           {[
