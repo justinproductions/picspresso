@@ -207,7 +207,7 @@ export default function Home() {
           </p>
         </div>
         {/* Badges */}
-        <div className="flex items-center gap-2 mt-4 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap" style={{ marginTop: 20 }}>
           {[
             { icon: "M13 10V3L4 14h7v7l9-11h-7z", label: "Fast" },
             { icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z", label: "Secure" },
