@@ -196,9 +196,11 @@ export default function Home() {
     <main className="relative z-10 flex flex-col min-h-screen" style={{ maxWidth: 960, margin: "0 auto", width: "100%", paddingTop: 48, paddingBottom: 48, paddingLeft: "clamp(16px, 5vw, 48px)", paddingRight: "clamp(16px, 5vw, 48px)" }}>
       {/* Header */}
       <header style={{ marginBottom: 40, paddingBottom: 32, borderBottom: "1px solid var(--border)" }}>
-        <h1 style={{ fontSize: 32, fontWeight: 700, letterSpacing: "-0.5px", lineHeight: 1 }}>
-          <span style={{ color: "var(--accent)" }}>pic</span><span style={{ color: "var(--heading)" }}>spresso</span>
-        </h1>
+        <img
+          src="/logo.webp"
+          alt="Picspresso"
+          style={{ height: 40, width: "auto", display: "block" }}
+        />
         <p style={{ color: "var(--muted)", fontSize: 13, marginTop: 6 }}>
           Fast browser-based WebP converter
         </p>
@@ -504,9 +506,7 @@ export default function Home() {
         {/* Row 1: brand + privacy + links */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <span style={{ color: "var(--heading)", fontWeight: 600, fontSize: 15 }}>
-              <span style={{ color: "var(--accent)" }}>pic</span>spresso
-            </span>
+            <img src="/logo.webp" alt="Picspresso" style={{ height: 22, width: "auto" }} />
             <span style={{ color: "var(--border)" }}>·</span>
             <span style={{ color: "var(--muted)", fontSize: 12 }}>Free browser-based WebP converter</span>
           </div>

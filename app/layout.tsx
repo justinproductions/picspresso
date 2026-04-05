@@ -34,17 +34,19 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Picspresso — Free WebP Converter Online",
     description:
-      "Convert JPG, PNG, GIF and more to WebP instantly. 100% private — images never leave your browser. Free forever.",
+      "Convert JPG, PNG, GIF and more to WebP instantly. 100% private. Images never leave your browser. Free forever.",
     url: BASE_URL,
     siteName: "Picspresso",
     locale: "en_US",
     type: "website",
+    images: [{ url: `${BASE_URL}/og.webp`, width: 1200, height: 630, alt: "Picspresso" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Picspresso — Free WebP Converter Online",
     description:
-      "Convert JPG, PNG, GIF and more to WebP instantly. 100% private — images never leave your browser.",
+      "Convert JPG, PNG, GIF and more to WebP instantly. 100% private. Images never leave your browser.",
+    images: [`${BASE_URL}/og.webp`],
   },
   robots: {
     index: true,
