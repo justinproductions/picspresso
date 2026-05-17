@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@/lib/supabase";
 
 interface Props {
   onClose: () => void;
@@ -23,11 +22,16 @@ export default function FeedbackModal({ onClose }: Props) {
     setStatus("submitting");
 
     try {
-      const { error } = await supabase.from("feedback").insert({
-        message: message.trim(),
-        email: email.trim() || null,
+      const res = await fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: message.trim(),
+          email: email.trim(),
+          honeypot,
+        }),
       });
-      if (error) throw error;
+      if (!res.ok) throw new Error("Request failed");
       setStatus("success");
     } catch {
       setStatus("error");
