@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import TurnstileWidget from "./TurnstileWidget";
 
 interface Props {
   onClose: () => void;
@@ -8,17 +9,25 @@ interface Props {
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
+
 export default function FeedbackModal({ onClose }: Props) {
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
   const [honeypot, setHoneypot] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
   const [status, setStatus] = useState<Status>("idle");
+
+  const handleVerify = useCallback((token: string) => setTurnstileToken(token), []);
+  const handleExpire = useCallback(() => setTurnstileToken(""), []);
+  const handleError = useCallback(() => setTurnstileToken(""), []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (message.trim().length < 3) return;
     // Silently succeed if honeypot is filled — bot submission
     if (honeypot) { setStatus("success"); return; }
+    if (TURNSTILE_SITE_KEY && !turnstileToken) return;
     setStatus("submitting");
 
     try {
@@ -29,6 +38,7 @@ export default function FeedbackModal({ onClose }: Props) {
           message: message.trim(),
           email: email.trim(),
           honeypot,
+          turnstileToken,
         }),
       });
       if (!res.ok) throw new Error("Request failed");
@@ -156,6 +166,15 @@ export default function FeedbackModal({ onClose }: Props) {
               />
             </div>
 
+            {TURNSTILE_SITE_KEY && (
+              <TurnstileWidget
+                siteKey={TURNSTILE_SITE_KEY}
+                onVerify={handleVerify}
+                onExpire={handleExpire}
+                onError={handleError}
+              />
+            )}
+
             {status === "error" && (
               <p style={{ color: "#f87171", fontSize: 12 }}>Something went wrong. Please try again.</p>
             )}
@@ -163,7 +182,11 @@ export default function FeedbackModal({ onClose }: Props) {
             <button
               type="submit"
               className="btn-accent w-full justify-center"
-              disabled={status === "submitting" || message.trim().length < 3}
+              disabled={
+                status === "submitting" ||
+                message.trim().length < 3 ||
+                (!!TURNSTILE_SITE_KEY && !turnstileToken)
+              }
             >
               {status === "submitting" ? (
                 <>

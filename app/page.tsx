@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import Link from "next/link";
 import FeedbackModal from "@/components/FeedbackModal";
 import ImageDropzone from "@/components/ImageDropzone";
 import ImageCard, { type ImageItem } from "@/components/ImageCard";
@@ -520,7 +521,21 @@ export default function Home() {
             Images never leave your browser
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 flex-wrap justify-center">
+            <Link
+              href="/about"
+              style={{ color: "var(--muted)", fontSize: 12, textDecoration: "none" }}
+              className="hover:text-white transition-colors"
+            >
+              About
+            </Link>
+            <Link
+              href="/privacy"
+              style={{ color: "var(--muted)", fontSize: 12, textDecoration: "none" }}
+              className="hover:text-white transition-colors"
+            >
+              Privacy
+            </Link>
             <a
               href="https://github.com/justinproductions/picspresso"
               target="_blank"
