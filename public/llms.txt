@@ -1,0 +1,39 @@
+# Picspresso
+
+> Picspresso is a free, browser-based WebP image converter. Convert JPG, PNG, GIF and other formats to WebP instantly. All processing happens client-side in the user's browser — images never leave the device, never touch a server.
+
+Picspresso is a single-page web tool built for fast, private image conversion. There is no account, no upload, no tracking of image content. The entire conversion pipeline runs in the browser using the Canvas API, which means it works fully offline once loaded and there is zero server-side image storage.
+
+## Key features
+
+- **WebP conversion** from JPG, JPEG, PNG, GIF, BMP, and other browser-decodable image formats
+- **Bulk conversion** — drag-and-drop multiple files or a whole folder at once
+- **Resize controls** — set custom width and height with optional aspect-ratio lock, or a max-dimension mode that scales the longest side
+- **Quality slider** (0–100) — fine-tune the compression / file-size trade-off per batch
+- **Single or ZIP download** — one converted file downloads directly, multiple files bundle into a ZIP automatically
+- **100% client-side** — images are processed via the browser Canvas API and never uploaded
+- **No account, no signup, no watermark, no file-size cap** beyond what the browser can handle
+
+## Primary use cases
+
+- Web developers compressing assets before deployment
+- Bloggers and content creators reducing image weight for faster page loads
+- Designers batch-converting reference libraries
+- Anyone needing fast, private image conversion without trusting a third-party server
+
+## Links
+
+- [Picspresso converter](https://www.picspresso.com): The main tool — open it and start converting
+- [Justin Productions](https://justin.productions/en): Creator and maintainer
+
+## Technical details
+
+- Stack: Next.js 16 (App Router), TypeScript, React 19, Tailwind CSS
+- Hosting: Vercel (static + serverless)
+- Image processing: Browser Canvas API + `toBlob('image/webp', quality)`
+- Bulk download: JSZip + file-saver
+- Storage: No user images are ever stored on any server. Only optional feedback messages (separate from image data) are stored in Turso (libSQL) when users opt to send feedback.
+
+## License
+
+The Picspresso project is open-source under the MIT License. See the repository for details.
